@@ -36,6 +36,36 @@ body {
 
 }
 
+
+.card {
+
+    width:200px;
+
+    height:100px;
+
+    border:1px solid black;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:0.3s;
+
+}
+
+
+.card:hover {
+
+    background-color:black;
+
+    color:white;
+
+    transform:translateY(-10px);
+}  
+
+
 </style>
 
 
@@ -53,13 +83,13 @@ body {
 <nav>
 
 
-<a href="weather.html">
+<a class="card" href="weather.html">
 气象分析
 </a>
 
 
-<a href="resource.html">
-资料分享
+<a class="card" href="resource.html">
+个人展台
 </a>
 
 </nav>
