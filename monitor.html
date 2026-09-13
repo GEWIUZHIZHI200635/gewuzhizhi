@@ -12,11 +12,12 @@
 
 .card {
     width:200px;
-    padding:30px;
+    padding:25px;
     border:1px solid #cccccc;
     border-radius:15px;
     text-align:center;
     background-color:#eeeeee;
+    font-size:18px;
 }
 
 .cards {
@@ -26,6 +27,11 @@
     gap:20px;
 }
 
+.card strong {
+    display:block;
+    font-size:30px;
+    margin-top:10px;
+}    
     
 </style>
 
@@ -55,7 +61,28 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&cur
 
 .then(data => {
 
-    let weatherCode = data.current.weather_code;
+let time = data.current.time;
+
+let date = new Date(time);
+
+let year = date.getFullYear();
+
+let month = date.getMonth() + 1;
+
+let day = date.getDate();
+
+let hour = date.getHours();
+
+let minute = date.getMinutes();
+
+let timeText =
+    year + "年" +
+    month + "月" +
+    day + "日 " +
+    hour + ":" +
+    minute;
+
+let weatherCode = data.current.weather_code;
 
 let weatherText;
 
@@ -114,33 +141,44 @@ else {
 
     document.getElementById("weather").innerHTML =
 
-    "<div class='cards'>" +
+"<p>更新时间：" + timeText + "</p>" +
 
-    "<div class='card'>" +
-    "气温：" + data.current.temperature_2m + " ℃" +
-    "</div>" +
+"<p>数据来源：Open-Meteo</p>" +
 
-    "<div class='card'>" +
-    "相对湿度：" + data.current.relative_humidity_2m + " %" +
-    "</div>" +
+"<div class='cards'>" +
 
-    "<div class='card'>" +
-    "风速：" + data.current.wind_speed_10m + " km/h" +
-    "</div>" +
+"<div class='card'>" +
+"<div>气温</div>" +
+"<strong>" + data.current.temperature_2m + " ℃</strong>" +
+"</div>" +
 
-    "<div class='card'>" +
-    "风向：" + windText + "（" + data.current.wind_direction_10m + "°）" +
-    "</div>" +
+"<div class='card'>" +
+"<div>相对湿度</div>" +
+"<strong>" + data.current.relative_humidity_2m + " %</strong>" +
+"</div>" +
 
-    "<div class='card'>" +
-    "海平面气压：" + data.current.pressure_msl + " hPa" +
-    "</div>" +
+"<div class='card'>" +
+"<div>风速</div>" +
+"<strong>" + data.current.wind_speed_10m + " km/h</strong>" +
+"</div>" +
 
-    "<div class='card'>" +
-    "降水：" + data.current.precipitation + " mm" +
-    "</div>" +
+"<div class='card'>" +
+"<div>风向</div>" +
+"<strong>" + windText + "</strong>" +
+"<div>" + data.current.wind_direction_10m + "°</div>" +
+"</div>" +
 
-    "</div>";
+"<div class='card'>" +
+"<div>海平面气压</div>" +
+"<strong>" + data.current.pressure_msl + " hPa</strong>" +
+"</div>" +
+
+"<div class='card'>" +
+"<div>降水</div>" +
+"<strong>" + data.current.precipitation + " mm</strong>" +
+"</div>" +
+
+"</div>";
 
 });
     
