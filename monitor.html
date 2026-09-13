@@ -10,6 +10,29 @@
 
 <style>
 
+.forecast {
+    width:900px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+}
+
+.forecast-card {
+    padding:20px;
+    border:1px solid #cccccc;
+    border-radius:15px;
+    text-align:center;
+    background-color:#eeeeee;
+    font-size:16px;
+}
+
+.forecast-card strong {
+    display:block;
+    font-size:24px;
+    margin:15px 0;
+}
+    
 .card {
     padding:25px;
     border:1px solid #cccccc;
@@ -56,7 +79,7 @@
 
 <script>
 
-fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation,weather_code&timezone=Asia%2FShanghai")
+fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=8&timezone=Asia%2FShanghai")
 
 .then(response => response.json())
 
@@ -170,7 +193,57 @@ else {
 }
 
 
-    document.getElementById("weather").innerHTML =
+   let forecast = "";
+
+for (let i = 1; i < 8; i++) {
+
+    let date = data.daily.time[i];
+
+    let weatherCode = data.daily.weather_code[i];
+
+    let forecastWeatherText;
+
+    if (weatherCode == 0 || weatherCode == 1) {
+        forecastWeatherText = "晴";
+    }
+    else if (weatherCode == 2 || weatherCode == 3) {
+        forecastWeatherText = "多云";
+    }
+    else if (weatherCode == 61) {
+        forecastWeatherText = "小雨";
+    }
+    else if (weatherCode == 63) {
+        forecastWeatherText = "中雨";
+    }
+    else if (weatherCode == 65) {
+        forecastWeatherText = "大雨";
+    }
+    else if (weatherCode == 71) {
+        forecastWeatherText = "小雪";
+    }
+    else if (weatherCode == 73) {
+        forecastWeatherText = "中雪";
+    }
+    else if (weatherCode == 75) {
+        forecastWeatherText = "大雪";
+    }
+    else {
+        forecastWeatherText = "其他天气";
+    }
+
+    forecast +=
+    "<div class='forecast-card'>" +
+    "<div>" + date + "</div>" +
+    "<strong>" + forecastWeatherText + "</strong>" +
+    "<div>" +
+    data.daily.temperature_2m_max[i] + "℃ / " +
+    data.daily.temperature_2m_min[i] + "℃" +
+    "</div>" +
+    "</div>";
+}
+
+
+document.getElementById("weather").innerHTML =
 
 "<p>更新时间：" + timeText + "</p>" +
 
@@ -182,7 +255,7 @@ else {
 "<div>天气状况</div>" +
 "<strong>" + weatherText + "</strong>" +
 "</div>" +
-        
+
 "<div class='card'>" +
 "<div>气温</div>" +
 "<strong>" + data.current.temperature_2m + " ℃</strong>" +
@@ -195,7 +268,7 @@ else {
 
 "<div class='card'>" +
 "<div>风速</div>" +
-"<strong>" + data.current.wind_speed_10m + " km/h</strong>" +
+"<strong>" + (data.current.wind_speed_10m / 3.6).toFixed(1) + " m/s</strong>" +
 "</div>" +
 
 "<div class='card'>" +
@@ -214,9 +287,13 @@ else {
 "<strong>" + data.current.precipitation + " mm</strong>" +
 "</div>" +
 
-"</div>";
+"</div>" +
 
-});
+"<h2>未来7天天气</h2>" +
+
+"<div class='forecast'>" +
+forecast +
+"</div>";
     
 </script>
 
