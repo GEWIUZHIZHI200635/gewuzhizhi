@@ -11,20 +11,21 @@
 <style>
 
 .card {
-    width:200px;
     padding:25px;
     border:1px solid #cccccc;
     border-radius:15px;
     text-align:center;
     background-color:#eeeeee;
     font-size:18px;
+    min-height:100px;
 }
 
 .cards {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
+    width:900px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:25px;
 }
 
 .card strong {
@@ -86,23 +87,53 @@ let weatherCode = data.current.weather_code;
 
 let weatherText;
 
-if (weatherCode == 0) {
+if (weatherCode == 0 || weatherCode == 1) {
     weatherText = "晴";
-} 
-else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) {
+}
+else if (weatherCode == 2 || weatherCode == 3) {
     weatherText = "多云";
 }
-else if (weatherCode >= 51 && weatherCode <= 67) {
-    weatherText = "降水";
+else if (weatherCode == 45 || weatherCode == 48) {
+    weatherText = "雾";
 }
-else if (weatherCode >= 71 && weatherCode <= 77) {
-    weatherText = "降雪";
+else if (weatherCode == 51 || weatherCode == 53 || weatherCode == 55 || weatherCode == 56 || weatherCode == 57) {
+    weatherText = "毛毛雨";
 }
-else if (weatherCode >= 80 && weatherCode <= 82) {
+else if (weatherCode == 61) {
+    weatherText = "小雨";
+}
+else if (weatherCode == 63) {
+    weatherText = "中雨";
+}
+else if (weatherCode == 65) {
+    weatherText = "大雨";
+}
+else if (weatherCode == 66 || weatherCode == 67) {
+    weatherText = "冻雨";
+}
+else if (weatherCode == 71) {
+    weatherText = "小雪";
+}
+else if (weatherCode == 73) {
+    weatherText = "中雪";
+}
+else if (weatherCode == 75) {
+    weatherText = "大雪";
+}
+else if (weatherCode == 77) {
+    weatherText = "雪粒";
+}
+else if (weatherCode == 80 || weatherCode == 81 || weatherCode == 82) {
     weatherText = "阵雨";
 }
-else if (weatherCode >= 95) {
+else if (weatherCode == 85 || weatherCode == 86) {
+    weatherText = "阵雪";
+}
+else if (weatherCode == 95) {
     weatherText = "雷暴";
+}
+else if (weatherCode == 96 || weatherCode == 99) {
+    weatherText = "雷暴伴冰雹";
 }
 else {
     weatherText = "其他天气";
@@ -147,6 +178,11 @@ else {
 
 "<div class='cards'>" +
 
+"<div class='card'>" +
+"<div>天气状况</div>" +
+"<strong>" + weatherText + "</strong>" +
+"</div>" +
+        
 "<div class='card'>" +
 "<div>气温</div>" +
 "<strong>" + data.current.temperature_2m + " ℃</strong>" +
