@@ -8,6 +8,28 @@
 伊犁实时气象监测
 </title>
 
+<style>
+
+.card {
+    width:200px;
+    padding:30px;
+    border:1px solid #cccccc;
+    border-radius:15px;
+    text-align:center;
+    background-color:#eeeeee;
+}
+
+.cards {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+    
+</style>
+
+    
 </head>
 
 <body>
@@ -27,7 +49,7 @@
 
 <script>
 
-fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation,weather_code")
+fetch("fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation,weather_code&timezone=Asia%2FShanghai")")
 
 .then(response => response.json())
 
@@ -35,44 +57,90 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&cur
 
     let weatherCode = data.current.weather_code;
 
-    let weatherText;
+let weatherText;
 
-    if (weatherCode == 0) {
-        weatherText = "晴";
-    } 
-    else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) {
-        weatherText = "多云";
-    }
-    else if (weatherCode >= 51 && weatherCode <= 67) {
-        weatherText = "降水";
-    }
-    else if (weatherCode >= 71 && weatherCode <= 77) {
-        weatherText = "降雪";
-    }
-    else if (weatherCode >= 80 && weatherCode <= 82) {
-        weatherText = "阵雨";
-    }
-    else if (weatherCode >= 95) {
-        weatherText = "雷暴";
-    }
-    else {
-        weatherText = "其他天气";
-    }
+if (weatherCode == 0) {
+    weatherText = "晴";
+} 
+else if (weatherCode == 1 || weatherCode == 2 || weatherCode == 3) {
+    weatherText = "多云";
+}
+else if (weatherCode >= 51 && weatherCode <= 67) {
+    weatherText = "降水";
+}
+else if (weatherCode >= 71 && weatherCode <= 77) {
+    weatherText = "降雪";
+}
+else if (weatherCode >= 80 && weatherCode <= 82) {
+    weatherText = "阵雨";
+}
+else if (weatherCode >= 95) {
+    weatherText = "雷暴";
+}
+else {
+    weatherText = "其他天气";
+}
+
+
+let windDirection = data.current.wind_direction_10m;
+
+let windText;
+
+if (windDirection >= 337.5 || windDirection < 22.5) {
+    windText = "北风";
+}
+else if (windDirection < 67.5) {
+    windText = "东北风";
+}
+else if (windDirection < 112.5) {
+    windText = "东风";
+}
+else if (windDirection < 157.5) {
+    windText = "东南风";
+}
+else if (windDirection < 202.5) {
+    windText = "南风";
+}
+else if (windDirection < 247.5) {
+    windText = "西南风";
+}
+else if (windDirection < 292.5) {
+    windText = "西风";
+}
+else {
+    windText = "西北风";
+}
 
 
     document.getElementById("weather").innerHTML =
 
-        "更新时间：" + data.current.time + "<br>" +
-        "天气：" + weatherText + "<br>" +
-        "天气代码：" + weatherCode + "<br>" +
-        "气温：" + data.current.temperature_2m + " ℃<br>" +
-        "相对湿度：" + data.current.relative_humidity_2m + " %<br>" +
-        "风速：" + data.current.wind_speed_10m + " km/h<br>" +
-        "风向：" + data.current.wind_direction_10m + "°<br>" +
-        "海平面气压：" + data.current.pressure_msl + " hPa<br>" +
-        "降水：" + data.current.precipitation + " mm";
+    "<div class='cards'>" +
 
-});
+    "<div class='card'>" +
+    "气温：" + data.current.temperature_2m + " ℃" +
+    "</div>" +
+
+    "<div class='card'>" +
+    "相对湿度：" + data.current.relative_humidity_2m + " %" +
+    "</div>" +
+
+    "<div class='card'>" +
+    "风速：" + data.current.wind_speed_10m + " km/h" +
+    "</div>" +
+
+    "<div class='card'>" +
+    "风向：" + windText + "（" + data.current.wind_direction_10m + "°）" +
+    "</div>" +
+
+    "<div class='card'>" +
+    "海平面气压：" + data.current.pressure_msl + " hPa" +
+    "</div>" +
+
+    "<div class='card'>" +
+    "降水：" + data.current.precipitation + " mm" +
+    "</div>" +
+
+    "</div>";
 
 </script>
 
