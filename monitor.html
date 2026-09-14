@@ -230,7 +230,7 @@ transform:scale(1.03);
 }
 
 
-}
+
 
 
 
@@ -306,7 +306,7 @@ width:100%;
 
 height:100%;
 
-z-index:-1;
+z-index: 0;
 
 pointer-events:none;
 
@@ -522,7 +522,7 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&cur
 
 .then(data => {
 
-let time = 63;
+let time = data.current.time;
 
 let date = new Date(time);
 
@@ -543,7 +543,7 @@ let timeText =
     hour + ":" +
     minute;
 
-let weatherCode = data.current.weather_code;
+let weatherCode = 63;
 
 let weatherText;
 let bg="";
