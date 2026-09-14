@@ -9,7 +9,7 @@
 </title>
 
 <style>
-    
+
 body {
 
     text-align:center;
@@ -18,116 +18,263 @@ body {
 
     font-family:"Microsoft YaHei";
 
+    background:#f5f8fc;
+
+    color:#222;
+
 }
+
+
+/* 标题 */
+
+h1{
+
+    margin-top:35px;
+
+    font-size:34px;
+
+    letter-spacing:3px;
+
+}
+
+
+h2{
+
+    margin-top:10px;
+
+    font-size:24px;
+
+}
+
+
+
+/* 信息区域 */
+
+#weather > p{
+
+    color:#666;
+
+    font-size:15px;
+
+    margin:8px;
+
+}
+
 
 
 /* 实时天气区域 */
 
 .cards {
 
-    width:900px;
 
-    margin:30px auto;
+    width:850px;
 
-    display:flex;
+    margin:35px auto;
 
-    flex-wrap:wrap;
 
-    justify-content:center;
+    display:grid;
+
+
+    grid-template-columns:repeat(4,180px);
+
 
     gap:25px;
 
+
+    justify-content:center;
+
+
 }
+
+
 
 /* 单个实时卡片 */
 
 .card {
 
-    padding:25px;
 
-    border:1px solid #cccccc;
+    padding:25px 15px;
 
-    border-radius:15px;
+
+    border-radius:18px;
+
 
     text-align:center;
 
-    background-color:#eeeeee;
+
+    background:white;
+
 
     width:150px;
 
-    font-size:18px;
 
     min-height:100px;
 
-}
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
 
 
-/* 未来7天天气 */
+    border:1px solid #e5e5e5;
 
-.forecast {
 
-    width:1100px;
+    transition:.3s;
 
-    margin:30px auto;
-
-    display:grid;
-
-    grid-template-columns:repeat(7,130px);
-
-    justify-content:center;
-
-    gap:15px;
-
-     box-sizing:border-box;
-
-    padding:15px;
 
 }
 
 
-/* 未来天气卡片 */
+.card:hover{
 
-.forecast-card {
-
-    padding:20px;
-
-    border:1px solid #cccccc;
-
-    border-radius:15px;
-
-    text-align:center;
-
-    background-color:#eeeeee;
-
-    font-size:16px;
-
-    white-space:nowrap;
+    transform:translateY(-5px);
 
 }
 
 
-.forecast-card strong {
+/* 卡片标题 */
 
-    display:block;
 
-    font-size:24px;
+.card div{
 
-    margin:15px 0;
+
+    font-size:17px;
+
+
+    color:#666;
+
 
 }
 
 
 /* 数值 */
 
+
 .card strong {
+
 
     display:block;
 
+
     font-size:30px;
 
-    margin-top:10px;
+
+    margin-top:15px;
+
+
+    color:#111;
+
 
 }
+
+
+
+
+
+/* 未来7天天气标题 */
+
+.forecast-title{
+
+    margin-top:40px;
+
+}
+
+
+
+/* 未来7天天气 */
+
+.forecast {
+
+
+    width:1000px;
+
+
+    margin:30px auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(7,130px);
+
+
+    justify-content:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+/* 未来天气卡片 */
+
+
+.forecast-card {
+
+
+    padding:20px 10px;
+
+
+    border-radius:16px;
+
+
+    background:white;
+
+
+    border:1px solid #e5e5e5;
+
+
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+
+
+    font-size:15px;
+
+
+}
+
+
+
+.forecast-card strong {
+
+
+    display:block;
+
+
+    font-size:22px;
+
+
+    margin:18px 0;
+
+
+}
+
+
+
+/* 自适应 */
+
+@media(max-width:900px){
+
+
+.cards{
+
+    width:95%;
+
+    grid-template-columns:repeat(2,180px);
+
+}
+
+
+.forecast{
+
+    width:95%;
+
+    grid-template-columns:repeat(3,130px);
+
+}
+
+
+}
+
 
 </style>
 
