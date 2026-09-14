@@ -8,43 +8,38 @@
 伊犁实时气象监测
 </title>
 
-<style>
-
-
-    
 body {
+
     text-align:center;
+
+    margin:0;
+
+    font-family:"Microsoft YaHei";
+
 }
 
-.forecast {
 
-    width:1100px;
+/* 实时天气区域 */
 
-    margin:30px auto;
+.cards {
+
+    width:900px;
+
+    margin:40px auto;
 
     display:grid;
 
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:repeat(4,170px);
 
-    gap:20px;
+    justify-content:center;
+
+    gap:25px;
 
 }
 
-.forecast-card {
-    padding:20px;
-    border:1px solid #cccccc;
-    border-radius:15px;
-    text-align:center;
-    background-color:#eeeeee;
-    font-size:16px;
-}
 
-.forecast-card strong {
-    display:block;
-    font-size:24px;
-    margin:15px 0;
-}
-    
+/* 单个实时卡片 */
+
 .card {
 
     padding:25px;
@@ -58,35 +53,86 @@ body {
     background-color:#eeeeee;
 
     width:170px;
-    
+
     font-size:18px;
 
     min-height:100px;
 
 }
 
-.cards {
 
-    width:900px;
+/* 第二排第一个卡片换位置 */
 
-    margin:30px auto;
+.card:nth-child(5){
 
-    display:flex;
+    grid-column:1;
 
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    gap:25px;
+    margin-left:0;
 
 }
 
-.card strong {
+
+/* 未来7天天气 */
+
+.forecast {
+
+    width:1250px;
+
+    margin:30px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(7,150px);
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+
+/* 未来天气卡片 */
+
+.forecast-card {
+
+    padding:20px;
+
+    border:1px solid #cccccc;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    background-color:#eeeeee;
+
+    font-size:16px;
+
+}
+
+
+.forecast-card strong {
+
     display:block;
+
+    font-size:24px;
+
+    margin:15px 0;
+
+}
+
+
+/* 数值 */
+
+.card strong {
+
+    display:block;
+
     font-size:30px;
+
     margin-top:10px;
-}    
-    
+
+}
+
 </style>
 
     
