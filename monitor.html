@@ -25,20 +25,19 @@ body {
 
 .cards {
 
-    width:900px;
+    width:1000px;
 
     margin:30px auto;
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:repeat(4,170px);
+    flex-wrap:wrap;
 
     justify-content:center;
 
     gap:25px;
 
 }
-
 
 /* 单个实时卡片 */
 
@@ -54,7 +53,7 @@ body {
 
     background-color:#eeeeee;
 
-    width:170px;
+    width:150px;
 
     font-size:18px;
 
@@ -68,6 +67,8 @@ body {
 .card:nth-child(5){
 
     grid-column:2;
+
+     margin-left:100px;
 
 }
 
