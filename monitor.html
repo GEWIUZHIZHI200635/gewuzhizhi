@@ -10,17 +10,71 @@
 
 <style>
 
-.cloud {
+    
+.card:hover {
 
-    position:absolute;
+    transform:translateY(-8px);
 
-    top:100px;
+    transition:0.3s;
 
-    left:-200px;
+}
 
-    font-size:90px;
+    
+.cloud{
 
-    animation:cloudMove 20s linear infinite;
+position:absolute;
+
+width:120px;
+
+height:50px;
+
+background:white;
+
+border-radius:50px;
+
+opacity:0.8;
+
+}
+
+
+.cloud::before{
+
+content:"";
+
+position:absolute;
+
+width:60px;
+
+height:60px;
+
+background:white;
+
+border-radius:50%;
+
+top:-30px;
+
+left:20px;
+
+}
+
+
+.cloud::after{
+
+content:"";
+
+position:absolute;
+
+width:80px;
+
+height:80px;
+
+background:white;
+
+border-radius:50%;
+
+top:-40px;
+
+right:20px;
 
 }
 
@@ -53,9 +107,25 @@
 
     right:150px;
 
-    font-size:100px;
+    width:90px;
 
-    animation:sunMove 8s infinite alternate;
+    height:90px;
+
+    background:#ffd84d;
+
+    border-radius:50%;
+
+    box-shadow:
+
+    0 0 30px #ffd84d,
+
+    0 0 60px #ffec99,
+
+    0 0 100px #fff3b0;
+
+    animation:
+
+    sunMove 8s infinite alternate;
 
 }
 
@@ -78,6 +148,65 @@
 }
 
 
+.sun::before {
+
+
+content:"";
+
+
+position:absolute;
+
+
+top:-20px;
+
+left:-20px;
+
+
+width:130px;
+
+height:130px;
+
+
+border-radius:50%;
+
+
+background:
+
+rgba(255,220,80,0.25);
+
+
+animation:
+
+sunGlow 3s infinite alternate;
+
+
+}
+
+
+
+@keyframes sunGlow {
+
+
+from{
+
+transform:scale(1);
+
+opacity:0.5;
+
+}
+
+
+to{
+
+transform:scale(1.3);
+
+opacity:0.9;
+
+}
+
+
+}
+    
     
 #weather-bg {
 
@@ -128,11 +257,15 @@ body {
 
 .forecast {
 
-width:1100px;
+    width:1100px;
 
-grid-template-columns:
+    margin:30px auto;
 
-repeat(7,1fr);
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:20px;
 
 }
 
@@ -201,14 +334,15 @@ box-shadow:
 
 .cards {
 
+    width:1000px;
 
-width:1000px;
+    margin:30px auto;
 
+    display:grid;
 
-grid-template-columns:
+    grid-template-columns:repeat(4,1fr);
 
-repeat(4,1fr);
-
+    gap:25px;
 
 }
 
@@ -292,17 +426,13 @@ if (weatherCode == 0 || weatherCode == 1) {
     weatherText = "晴";
     weatherIcon = "☀️";
     bg =
-    "<div class='sun'>☀️</div>";
+    "<div class='sun'></div>";
 }
 else if (weatherCode == 2 || weatherCode == 3) {
     weatherText = "多云";
     weatherIcon = "☁️";
     bg =
-
-    "<div class='cloud'>☁️</div>" +
-
-    "<div class='cloud' style='top:220px;animation-duration:30s;'>☁️</div>";
-
+    "<div class='cloud'></div>" 
 }
 else if (weatherCode == 45 || weatherCode == 48) {
     weatherText = "雾";
