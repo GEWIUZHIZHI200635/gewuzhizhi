@@ -311,9 +311,9 @@ let month = date.getMonth() + 1;
 
 let day = date.getDate();
 
-let hour = date.getHours();
+let hour = String(date.getHours()).padStart(2,"0");
 
-let minute = date.getMinutes();
+let minute = String(date.getMinutes()).padStart(2,"0");
 
 let timeText =
     year + "年" +
@@ -513,7 +513,7 @@ document.getElementById("weather").innerHTML =
 
 "<div class='card'>" + 
 "<div>能见度</div>" + 
-"<strong>" + visibilityText + " m</strong>" + 
+"<strong>" + visibilityText + "</strong>" 
 "</div>" +
 
 "</div>" +
