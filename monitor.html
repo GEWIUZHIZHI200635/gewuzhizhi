@@ -10,25 +10,154 @@
 
 <style>
 
+.cloud {
+
+    position:absolute;
+
+    top:100px;
+
+    left:-200px;
+
+    font-size:90px;
+
+    animation:cloudMove 20s linear infinite;
+
+}
+
+
+@keyframes cloudMove {
+
+
+    from {
+
+        transform:translateX(0);
+
+    }
+
+
+    to {
+
+        transform:translateX(140vw);
+
+    }
+
+
+}
+    
+    
+.sun {
+
+    position:absolute;
+
+    top:80px;
+
+    right:150px;
+
+    font-size:100px;
+
+    animation:sunMove 8s infinite alternate;
+
+}
+
+
+@keyframes sunMove {
+
+    from {
+
+        transform:translateY(0);
+
+    }
+
+
+    to {
+
+        transform:translateY(30px);
+
+    }
+
+}
+
+
+    
+#weather-bg {
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    z-index:-1;
+
+    overflow:hidden;
+
+}
+
+    
+.weather-icon {
+
+font-size:50px;
+margin:15px;
+    
+}
+    
 body {
+
     text-align:center;
+
+    margin:0;
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    180deg,
+    #87ceeb,
+    #f5fbff
+    );
+
+    font-family:
+    "Microsoft YaHei",
+    sans-serif;
+
 }
 
 .forecast {
-    width:900px;
-    margin:30px auto;
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:20px;
+
+width:1100px;
+
+grid-template-columns:
+
+repeat(7,1fr);
+
 }
 
 .forecast-card {
-    padding:20px;
-    border:1px solid #cccccc;
-    border-radius:15px;
-    text-align:center;
-    background-color:#eeeeee;
-    font-size:16px;
+
+
+padding:25px;
+
+
+border-radius:22px;
+
+
+background:
+
+rgba(255,255,255,0.35);
+
+
+backdrop-filter:blur(10px);
+
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,0.12);
+
+
 }
 
 .forecast-card strong {
@@ -38,28 +167,67 @@ body {
 }
     
 .card {
-    padding:25px;
-    border:1px solid #cccccc;
-    border-radius:15px;
+
+
+    padding:30px;
+
+
+    border-radius:25px;
+
+
     text-align:center;
-    background-color:#eeeeee;
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+    backdrop-filter:blur(10px);
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,0.15);
+
+
     font-size:18px;
-    min-height:100px;
+
+
+    min-height:120px;
+
+
 }
 
 .cards {
-    width:900px;
-    margin:30px auto;
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:25px;
+
+
+width:1000px;
+
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+
 }
 
 .card strong {
-    display:block;
-    font-size:30px;
-    margin-top:10px;
-}    
+
+
+display:block;
+
+
+font-size:36px;
+
+
+margin-top:15px;
+
+
+color:#123;
+
+
+}
     
 </style>
 
@@ -68,6 +236,9 @@ body {
 
 <body>
 
+<div id="weather-bg"></div>
+
+    
 <h1>
 伊犁实时气象监测
 </h1>
@@ -113,12 +284,25 @@ let timeText =
 let weatherCode = data.current.weather_code;
 
 let weatherText;
+let weatherIcon;
+let bg="";
+    
 
 if (weatherCode == 0 || weatherCode == 1) {
     weatherText = "晴";
+    weatherIcon = "☀️";
+    bg =
+    "<div class='sun'>☀️</div>";
 }
 else if (weatherCode == 2 || weatherCode == 3) {
     weatherText = "多云";
+    weatherIcon = "☁️";
+    bg =
+
+    "<div class='cloud'>☁️</div>" +
+
+    "<div class='cloud' style='top:220px;animation-duration:30s;'>☁️</div>";
+
 }
 else if (weatherCode == 45 || weatherCode == 48) {
     weatherText = "雾";
@@ -128,42 +312,55 @@ else if (weatherCode == 51 || weatherCode == 53 || weatherCode == 55 || weatherC
 }
 else if (weatherCode == 61) {
     weatherText = "小雨";
+    weatherIcon = "🌧️";
 }
 else if (weatherCode == 63) {
     weatherText = "中雨";
+    weatherIcon = "🌧️";
 }
 else if (weatherCode == 65) {
     weatherText = "大雨";
+    weatherIcon = "🌧️";
 }
 else if (weatherCode == 66 || weatherCode == 67) {
     weatherText = "冻雨";
+    weatherIcon = "🌧️";
 }
 else if (weatherCode == 71) {
     weatherText = "小雪";
+    weatherIcon = "❄️";
 }
 else if (weatherCode == 73) {
     weatherText = "中雪";
+    weatherIcon = "❄️";
 }
 else if (weatherCode == 75) {
     weatherText = "大雪";
+    weatherIcon = "❄️";
 }
 else if (weatherCode == 77) {
     weatherText = "雪粒";
+    weatherIcon = "❄️";
 }
 else if (weatherCode == 80 || weatherCode == 81 || weatherCode == 82) {
     weatherText = "阵雨";
+    weatherIcon = "🌧️";
 }
 else if (weatherCode == 85 || weatherCode == 86) {
     weatherText = "阵雪";
+    weatherIcon = "❄️";
 }
 else if (weatherCode == 95) {
     weatherText = "雷暴";
+    weatherIcon = "⛈️";
 }
 else if (weatherCode == 96 || weatherCode == 99) {
     weatherText = "雷暴伴冰雹";
+    weatherIcon = "⛈️";
 }
 else {
     weatherText = "其他天气";
+    weatherIcon="🌈";
 }
 
 
@@ -247,6 +444,7 @@ for (let i = 1; i < 8; i++) {
 }
 
 
+document.getElementById("weather-bg").innerHTML = bg;
 document.getElementById("weather").innerHTML =
 
 "<p>更新时间：" + timeText + "</p>" +
@@ -257,7 +455,12 @@ document.getElementById("weather").innerHTML =
 
 "<div class='card'>" +
 "<div>天气状况</div>" +
-"<strong>" + weatherText + "</strong>" +
+"<div class='weather-icon'>" +
+weatherIcon +
+"</div>" +
+"<strong>" +
+weatherText +
+"</strong>" +
 "</div>" +
 
 "<div class='card'>" +
