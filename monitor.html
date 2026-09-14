@@ -10,373 +10,21 @@
 
 <style>
 
-
-.rain-drop {
-
-    position:absolute;
-
-    top:-50px;
-
-    width:2px;
-
-    height:30px;
-
-    background:
-
-    linear-gradient(
-        transparent,
-        rgba(180,220,255,0.8)
-    );
-
-
-    transform:rotate(15deg);
-
-
-    animation:
-
-    rainFall linear infinite;
-
-
-}
-
-
-@keyframes rainFall {
-
-
-    from {
-
-        transform:
-        translateY(-50px)
-        rotate(15deg);
-
-    }
-
-
-    to {
-
-        transform:
-        translateY(110vh)
-        rotate(15deg);
-
-    }
-
-}
-    
-    
-.cloud{
-
-
-position:absolute;
-
-
-width:180px;
-
-height:65px;
-
-
-background:
-
-rgba(255,255,255,0.75);
-
-
-border-radius:60px;
-
-
-box-shadow:
-
-0 15px 30px rgba(0,0,0,0.15);
-
-
-filter:blur(0.5px);
-
-
-animation:
-
-cloudMove 40s linear infinite;
-
-
-}
-
-
-
-.cloud::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-width:90px;
-
-height:90px;
-
-
-background:
-
-rgba(255,255,255,0.85);
-
-
-border-radius:50%;
-
-
-top:-45px;
-
-
-left:30px;
-
-
-}
-
-
-
-.cloud::after{
-
-content:"";
-
-position:absolute;
-
-width:80px;
-
-height:80px;
-
-background:white;
-
-border-radius:50%;
-
-top:-40px;
-
-right:20px;
-
-}
-
-
-@keyframes cloudMove {
-
-
-    from {
-
-        transform:translateX(0);
-
-    }
-
-
-    to {
-
-        transform:translateX(140vw);
-
-    }
-
-
-}
-    
-    
-.sun {
-
-position:absolute;
-
-top:80px;
-
-right:180px;
-
-
-width:110px;
-
-height:110px;
-
-
-border-radius:50%;
-
-
-background:
-
-radial-gradient(
-circle,
-#fffbd0 0%,
-#ffd84d 35%,
-#ffb300 80%
-);
-
-
-box-shadow:
-
-0 0 40px #ffd84d,
-
-0 0 80px rgba(255,220,80,0.8),
-
-0 0 150px rgba(255,220,80,0.5);
-
-
-animation:
-
-sunMove 8s infinite alternate;
-
-
-}
-
-
-
-@keyframes sunMove {
-
-from{
-transform:scale(1);
-}
-
-to{
-transform:scale(1.03);
-}
-
-}
-
-
-
-
-
-
-.sun::before {
-
-
-content:"";
-
-
-position:absolute;
-
-
-top:-20px;
-
-left:-20px;
-
-
-width:130px;
-
-height:130px;
-
-
-border-radius:50%;
-
-
-background:
-
-rgba(255,220,80,0.25);
-
-
-animation:
-
-sunGlow 3s infinite alternate;
-
-
-}
-
-
-
-@keyframes sunGlow {
-
-
-from{
-
-transform:scale(1);
-
-opacity:0.5;
-
-}
-
-
-to{
-
-transform:scale(1.3);
-
-opacity:0.9;
-
-}
-
-
-}
-    
-    
-#weather-bg {
-
-position:fixed;
-
-left:0;
-
-top:0;
-
-width:100%;
-
-height:100%;
-
-z-index: -1;
-
-pointer-events:none;
-
-}
-
-    
-body {
-
-position:relative;
-    
-text-align:center;
-
-margin:0;
-
-min-height:100vh;
-
-
-background:
-
-linear-gradient(
-180deg,
-#6ec6ff,
-#f5fbff
-);
-
-
-font-family:
-
-"Microsoft YaHei",
-sans-serif;
-
-
-}
-
 .forecast {
-
-    width:1100px;
-
+    width:900px;
     margin:30px auto;
-
     display:grid;
-
-    grid-template-columns:repeat(7,1fr);
-
+    grid-template-columns:repeat(4, 1fr);
     gap:20px;
-
 }
 
 .forecast-card {
-
-
-padding:25px;
-
-
-border-radius:22px;
-
-
-background:
-
-rgba(255,255,255,0.35);
-
-
-backdrop-filter:blur(10px);
-
-
-box-shadow:
-
-0 8px 20px rgba(0,0,0,0.12);
-
-
+    padding:20px;
+    border:1px solid #cccccc;
+    border-radius:15px;
+    text-align:center;
+    background-color:#eeeeee;
+    font-size:16px;
 }
 
 .forecast-card strong {
@@ -386,69 +34,28 @@ box-shadow:
 }
     
 .card {
-
-
-    padding:30px;
-
-
-    border-radius:25px;
-
-    border:1px solid rgba(255,255,255,0.6);
-
+    padding:25px;
+    border:1px solid #cccccc;
+    border-radius:15px;
     text-align:center;
-
-
-    background:
-
-    rgba(255,255,255,0.45);
-
-
-    backdrop-filter:blur(10px);
-
-
-    box-shadow:
-
-    0 10px 30px rgba(0,0,0,0.15);
-
-
+    background-color:#eeeeee;
     font-size:18px;
-
-
-    min-height:120px;
-
-
+    min-height:100px;
 }
 
 .cards {
-
-    width:1000px;
-
+    width:900px;
     margin:30px auto;
-
     display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
+    grid-template-columns:repeat(3, 1fr);
     gap:25px;
-
 }
 
 .card strong {
-
-
-display:block;
-
-
-font-size:36px;
-
-
-margin-top:15px;
-
-
-color:#123;
-
-
-}
+    display:block;
+    font-size:30px;
+    margin-top:10px;
+}    
     
 </style>
 
@@ -457,9 +64,6 @@ color:#123;
 
 <body>
 
-<div id="weather-bg"></div>
-
-    
 <h1>
 伊犁实时气象监测
 </h1>
@@ -475,48 +79,6 @@ color:#123;
 
 <script>
 
-
-function createRain(){
-
-
-let rain="";
-
-
-for(let i=0;i<180;i++){
-
-
-let left=Math.random()*100;
-
-let height=15+Math.random()*35;
-
-let duration=0.5+Math.random()*0.8;
-
-let delay=Math.random()*2;
-
-
-rain +=
-
-"<div class='rain-drop' style='" +
-
-"left:"+left+"vw;" +
-
-"height:"+height+"px;" +
-
-"animation-duration:"+duration+"s;" +
-
-"animation-delay:"+delay+"s;" +
-
-"'></div>";
-
-}
-
-
-return rain;
-
-
-}
-
-    
 fetch("https://api.open-meteo.com/v1/forecast?latitude=43.92&longitude=81.32&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=8&timezone=Asia%2FShanghai")
 
 .then(response => response.json())
@@ -544,39 +106,15 @@ let timeText =
     hour + ":" +
     minute;
 
-let weatherCode = 63;
+let weatherCode = data.current.weather_code;
 
 let weatherText;
-let bg="";
-    
 
 if (weatherCode == 0 || weatherCode == 1) {
-
-weatherText = "晴";
-
-bg =
-"<div class='sun'></div>";
-
-document.body.style.background =
-"linear-gradient(180deg,#6ec6ff,#ffffff)";
+    weatherText = "晴";
 }
-
 else if (weatherCode == 2 || weatherCode == 3) {
-
-weatherText = "多云";
-
-bg =
-
-"<div class='cloud' style='top:120px;left:-200px'></div>" +
-
-"<div class='cloud' style='top:250px;left:-500px;animation-duration:60s;animation-delay:15s'></div>";
-
-
-document.body.style.background =
-
-"linear-gradient(180deg,#9bb7d4,#eef3f8)";
-
-
+    weatherText = "多云";
 }
 else if (weatherCode == 45 || weatherCode == 48) {
     weatherText = "雾";
@@ -584,38 +122,14 @@ else if (weatherCode == 45 || weatherCode == 48) {
 else if (weatherCode == 51 || weatherCode == 53 || weatherCode == 55 || weatherCode == 56 || weatherCode == 57) {
     weatherText = "毛毛雨";
 }
-else if (
-
-weatherCode == 61 ||
-
-weatherCode == 63 ||
-
-weatherCode == 65 ||
-
-weatherCode == 80 ||
-
-weatherCode == 81 ||
-
-weatherCode == 82
-
-){
-
-
-weatherText="降雨";
-
-
-bg=createRain();
-
-
-document.body.style.background=
-
-"linear-gradient(
-180deg,
-#526579,
-#dfe7ef
-)";
-
-
+else if (weatherCode == 61) {
+    weatherText = "小雨";
+}
+else if (weatherCode == 63) {
+    weatherText = "中雨";
+}
+else if (weatherCode == 65) {
+    weatherText = "大雨";
 }
 else if (weatherCode == 66 || weatherCode == 67) {
     weatherText = "冻雨";
@@ -632,7 +146,9 @@ else if (weatherCode == 75) {
 else if (weatherCode == 77) {
     weatherText = "雪粒";
 }
-
+else if (weatherCode == 80 || weatherCode == 81 || weatherCode == 82) {
+    weatherText = "阵雨";
+}
 else if (weatherCode == 85 || weatherCode == 86) {
     weatherText = "阵雪";
 }
@@ -727,7 +243,6 @@ for (let i = 1; i < 8; i++) {
 }
 
 
-document.getElementById("weather-bg").innerHTML = bg;
 document.getElementById("weather").innerHTML =
 
 "<p>更新时间：" + timeText + "</p>" +
@@ -738,9 +253,7 @@ document.getElementById("weather").innerHTML =
 
 "<div class='card'>" +
 "<div>天气状况</div>" +
-"<strong>" +
-weatherText +
-"</strong>" +
+"<strong>" + weatherText + "</strong>" +
 "</div>" +
 
 "<div class='card'>" +
@@ -761,6 +274,7 @@ weatherText +
 "<div class='card'>" +
 "<div>风向</div>" +
 "<strong>" + windText + "</strong>" +
+"<div>" + data.current.wind_direction_10m + "°</div>" +
 "</div>" +
 
 "<div class='card'>" +
@@ -780,8 +294,6 @@ weatherText +
 "<div class='forecast'>" +
 forecast +
 "</div>";
-
-});
     
 </script>
 
