@@ -11,51 +11,72 @@
 <style>
 
     
-.card:hover {
-
-    transform:translateY(-8px);
-
-    transition:0.3s;
-
-}
-
-    
 .cloud{
+
 
 position:absolute;
 
-width:120px;
 
-height:50px;
+width:180px;
 
-background:white;
+height:65px;
 
-border-radius:50px;
 
-opacity:0.8;
+background:
+
+rgba(255,255,255,0.75);
+
+
+border-radius:60px;
+
+
+box-shadow:
+
+0 15px 30px rgba(0,0,0,0.15);
+
+
+filter:blur(0.5px);
+
+
+animation:
+
+cloudMove 40s linear infinite;
+
 
 }
+
 
 
 .cloud::before{
 
+
 content:"";
+
 
 position:absolute;
 
-width:60px;
 
-height:60px;
+width:90px;
 
-background:white;
+height:90px;
+
+
+background:
+
+rgba(255,255,255,0.85);
+
 
 border-radius:50%;
 
-top:-30px;
 
-left:20px;
+top:-45px;
+
+
+left:30px;
+
 
 }
+
 
 
 .cloud::after{
@@ -101,51 +122,64 @@ right:20px;
     
 .sun {
 
-    position:absolute;
+position:absolute;
 
-    top:80px;
+top:80px;
 
-    right:150px;
+right:180px;
 
-    width:90px;
 
-    height:90px;
+width:110px;
 
-    background:#ffd84d;
+height:110px;
 
-    border-radius:50%;
 
-    box-shadow:
+border-radius:50%;
 
-    0 0 30px #ffd84d,
 
-    0 0 60px #ffec99,
+background:
 
-    0 0 100px #fff3b0;
+radial-gradient(
+circle,
+#fffbd0 0%,
+#ffd84d 35%,
+#ffb300 80%
+);
 
-    animation:
 
-    sunMove 8s infinite alternate;
+box-shadow:
+
+0 0 40px #ffd84d,
+
+0 0 80px rgba(255,220,80,0.8),
+
+0 0 150px rgba(255,220,80,0.5);
+
+
+animation:
+
+sunMove 8s infinite alternate;
+
 
 }
+
 
 
 @keyframes sunMove {
 
-    from {
+from{
+transform:scale(1);
+}
 
-        transform:translateY(0);
-
-    }
-
-
-    to {
-
-        transform:translateY(30px);
-
-    }
+to{
+transform:scale(1.03);
+}
 
 }
+
+
+}
+
 
 
 .sun::before {
@@ -210,48 +244,47 @@ opacity:0.9;
     
 #weather-bg {
 
-    position:fixed;
+position:fixed;
 
-    left:0;
+left:0;
 
-    top:0;
+top:0;
 
-    width:100%;
+width:100%;
 
-    height:100%;
+height:100%;
 
-    z-index:-1;
+z-index:-1;
 
-    overflow:hidden;
+pointer-events:none;
 
 }
 
-    
-.weather-icon {
-
-font-size:50px;
-margin:15px;
-    
-}
     
 body {
 
-    text-align:center;
 
-    margin:0;
+text-align:center;
 
-    min-height:100vh;
+margin:0;
 
-    background:
-    linear-gradient(
-    180deg,
-    #87ceeb,
-    #f5fbff
-    );
+min-height:100vh;
 
-    font-family:
-    "Microsoft YaHei",
-    sans-serif;
+
+background:
+
+linear-gradient(
+180deg,
+#6ec6ff,
+#f5fbff
+);
+
+
+font-family:
+
+"Microsoft YaHei",
+sans-serif;
+
 
 }
 
@@ -307,6 +340,7 @@ box-shadow:
 
     border-radius:25px;
 
+    border:1px solid rgba(255,255,255,0.6);
 
     text-align:center;
 
@@ -418,21 +452,36 @@ let timeText =
 let weatherCode = data.current.weather_code;
 
 let weatherText;
-let weatherIcon;
 let bg="";
     
 
 if (weatherCode == 0 || weatherCode == 1) {
-    weatherText = "晴";
-    weatherIcon = "☀️";
-    bg =
-    "<div class='sun'></div>";
+
+weatherText = "晴";
+
+bg =
+"<div class='sun'></div>";
+
+document.body.style.background =
+"linear-gradient(180deg,#6ec6ff,#ffffff)";
 }
+
 else if (weatherCode == 2 || weatherCode == 3) {
-    weatherText = "多云";
-    weatherIcon = "☁️";
-    bg =
-    "<div class='cloud'></div>" 
+
+weatherText = "多云";
+
+bg =
+
+"<div class='cloud' style='top:120px;left:-200px'></div>" +
+
+"<div class='cloud' style='top:250px;left:-500px;animation-duration:60s;animation-delay:15s'></div>";
+
+
+document.body.style.background =
+
+"linear-gradient(180deg,#9bb7d4,#eef3f8)";
+
+
 }
 else if (weatherCode == 45 || weatherCode == 48) {
     weatherText = "雾";
@@ -442,55 +491,42 @@ else if (weatherCode == 51 || weatherCode == 53 || weatherCode == 55 || weatherC
 }
 else if (weatherCode == 61) {
     weatherText = "小雨";
-    weatherIcon = "🌧️";
 }
 else if (weatherCode == 63) {
     weatherText = "中雨";
-    weatherIcon = "🌧️";
 }
 else if (weatherCode == 65) {
     weatherText = "大雨";
-    weatherIcon = "🌧️";
 }
 else if (weatherCode == 66 || weatherCode == 67) {
     weatherText = "冻雨";
-    weatherIcon = "🌧️";
 }
 else if (weatherCode == 71) {
     weatherText = "小雪";
-    weatherIcon = "❄️";
 }
 else if (weatherCode == 73) {
     weatherText = "中雪";
-    weatherIcon = "❄️";
 }
 else if (weatherCode == 75) {
     weatherText = "大雪";
-    weatherIcon = "❄️";
 }
 else if (weatherCode == 77) {
     weatherText = "雪粒";
-    weatherIcon = "❄️";
 }
 else if (weatherCode == 80 || weatherCode == 81 || weatherCode == 82) {
     weatherText = "阵雨";
-    weatherIcon = "🌧️";
 }
 else if (weatherCode == 85 || weatherCode == 86) {
     weatherText = "阵雪";
-    weatherIcon = "❄️";
 }
 else if (weatherCode == 95) {
     weatherText = "雷暴";
-    weatherIcon = "⛈️";
 }
 else if (weatherCode == 96 || weatherCode == 99) {
     weatherText = "雷暴伴冰雹";
-    weatherIcon = "⛈️";
 }
 else {
     weatherText = "其他天气";
-    weatherIcon="🌈";
 }
 
 
@@ -585,9 +621,6 @@ document.getElementById("weather").innerHTML =
 
 "<div class='card'>" +
 "<div>天气状况</div>" +
-"<div class='weather-icon'>" +
-weatherIcon +
-"</div>" +
 "<strong>" +
 weatherText +
 "</strong>" +
