@@ -356,34 +356,57 @@ for (let i = 1; i < 8; i++) {
 
     let forecastWeatherText;
 
-    if (weatherCode == 0 || weatherCode == 1) {
-        forecastWeatherText = "晴";
-    }
-    else if (weatherCode == 2 || weatherCode == 3) {
-        forecastWeatherText = "多云";
-    }
-    else if (weatherCode == 61) {
-        forecastWeatherText = "小雨";
-    }
-    else if (weatherCode == 63) {
-        forecastWeatherText = "中雨";
-    }
-    else if (weatherCode == 65) {
-        forecastWeatherText = "大雨";
-    }
-    else if (weatherCode == 71) {
-        forecastWeatherText = "小雪";
-    }
-    else if (weatherCode == 73) {
-        forecastWeatherText = "中雪";
-    }
-    else if (weatherCode == 75) {
-        forecastWeatherText = "大雪";
-    }
-    else {
-        forecastWeatherText = "其他天气";
-    }
-
+if (weatherCode == 0 || weatherCode == 1) {
+    forecastWeatherText = "晴";
+}
+else if (weatherCode == 2 || weatherCode == 3) {
+    forecastWeatherText = "多云";
+}
+else if (weatherCode == 45 || weatherCode == 48) {
+    forecastWeatherText = "雾";
+}
+else if (weatherCode == 51 || weatherCode == 53 || weatherCode == 55 || weatherCode == 56 || weatherCode == 57) {
+    forecastWeatherText = "毛毛雨";
+}
+else if (weatherCode == 61) {
+    forecastWeatherText = "小雨";
+}
+else if (weatherCode == 63) {
+    forecastWeatherText = "中雨";
+}
+else if (weatherCode == 65) {
+    forecastWeatherText = "大雨";
+}
+else if (weatherCode == 66 || weatherCode == 67) {
+    forecastWeatherText = "冻雨";
+}
+else if (weatherCode == 71) {
+    forecastWeatherText = "小雪";
+}
+else if (weatherCode == 73) {
+    forecastWeatherText = "中雪";
+}
+else if (weatherCode == 75) {
+    forecastWeatherText = "大雪";
+}
+else if (weatherCode == 77) {
+    forecastWeatherText = "雪粒";
+}
+else if (weatherCode == 80 || weatherCode == 81 || weatherCode == 82) {
+    forecastWeatherText = "阵雨";
+}
+else if (weatherCode == 85 || weatherCode == 86) {
+    forecastWeatherText = "阵雪";
+}
+else if (weatherCode == 95) {
+    forecastWeatherText = "雷暴";
+}
+else if (weatherCode == 96 || weatherCode == 99) {
+    forecastWeatherText = "雷暴伴冰雹";
+}
+else {
+    forecastWeatherText = "其他天气";
+}
     forecast +=
     "<div class='forecast-card'>" +
     "<div>" + date + "</div>" +
