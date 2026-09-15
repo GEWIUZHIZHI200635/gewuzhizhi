@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,72 +10,89 @@
 
 <style>
 
+/* 页面标题 */
 h1 {
-    text-align:center;
-    color:#1f2d3d;
+    text-align: center;
+    color: #1f2d3d;
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
 
 
-nav {
-    display:flex;
-    justify-content:center;
-    gap:40px;
-}
-
-
+/* 页面主体 */
 body {
-    width:1200px;
-    margin:auto;
+    width: 1200px;
+    margin: auto;
 
-    background-image:url("images/风景2.jpg");
-    background-size:cover;
-    background-position:center 40%;
-    background-attachment:fixed;
+    background-image: url("images/风景2.jpg");
+    background-size: cover;
+    background-position: center 40%;
+    background-attachment: fixed;
 }
 
 
+/* 卡片区域 */
+.cards {
+
+    display: grid;
+
+    /* 每行4个 */
+    grid-template-columns: repeat(4, 200px);
+
+    /* 行间距、列间距 */
+    gap: 35px 50px;
+
+    /* 整体居中 */
+    justify-content: center;
+}
+
+
+/* 卡片 */
 .card {
-    width:200px;
-    height:100px;
 
-    border:1px solid rgba(255,255,255,0.7);
-    border-radius:15px;
+    width: 200px;
+    height: 100px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.7);
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    border-radius: 15px;
 
-    transition:0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
 
-    font-size:24px;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.3s;
+
+    font-size: 24px;
 
     /* 默认黑色字体 */
-    color:black;
+    color: black;
 
     /* 半透明白色 */
-    background-color:rgba(255,255,255,0.65);
+    background-color: rgba(255,255,255,0.65);
 
-    /* 去掉链接默认下划线 */
-    text-decoration:none;
+    /* 去掉链接下划线 */
+    text-decoration: none;
 }
 
 
+/* 鼠标放上去 */
 .card:hover {
 
-    /* 你原来代码里的深蓝色 */
-    background-color:#1f4e79;
+    background-color: #1f4e79;
 
-    /* 字体变白 */
-    color:white;
+    color: white;
 
-    /* 向上浮动 */
-    transform:translateY(-10px);
+    transform: translateY(-10px);
 }
+
 </style>
 
 </head>
+
 
 <body>
 
@@ -102,4 +121,5 @@ body {
 </div>
 
 </body>
+
 </html>
