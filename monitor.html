@@ -2,53 +2,28 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>伊犁州实时气象监测</title>
+    <title>伊犁州气象监测</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            min-height: 100vh;
-            font-family: "Microsoft YaHei", sans-serif;
-
-            /* 背景图片 */
-            background-image: url("background.jpg");
+            margin: 0;
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+            background-image: url("你的背景图片路径.jpg");
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             background-attachment: fixed;
-
-            /* 让背景稍微暗一点，方便看文字 */
-            position: relative;
         }
 
-        /* 背景遮罩 */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.25);
-            z-index: -1;
-        }
-
-        /* 标题 */
         h1 {
             text-align: center;
             color: white;
-            font-size: 36px;
-            padding: 60px 0 45px;
-            letter-spacing: 4px;
+            margin-top: 50px;
+            margin-bottom: 40px;
         }
 
-        /* 卡片容器 */
         .cards {
             width: 90%;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
 
             display: grid;
@@ -56,92 +31,56 @@
             gap: 25px;
         }
 
-        /* 卡片 */
         .card {
-            height: 150px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: rgba(255, 255, 255, 0.88);
+            height: 120px;
+            background: white;
             border-radius: 12px;
 
-            color: #222;
-            text-decoration: none;
-            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            transition: 0.25s;
+            text-decoration: none;
+            color: #333;
+            font-size: 22px;
+            font-weight: bold;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.98);
-            transform: translateY(-5px);
-        }
-
-        /* 最后一张居中 */
-        .card:last-child {
-            grid-column: 2;
-        }
-
-        /* 平板 */
-        @media (max-width: 900px) {
-            .cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .card:last-child {
-                grid-column: auto;
-            }
-        }
-
-        /* 手机 */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 28px;
-                padding: 40px 0 30px;
-            }
-
-            .cards {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .card {
-                height: 120px;
-                font-size: 18px;
-            }
+            transform: translateY(-3px);
         }
     </style>
 </head>
 
 <body>
 
-    <h1>伊犁州实时气象监测</h1>
+    <h1>伊犁州气象监测</h1>
 
     <div class="cards">
 
-        <a href="伊宁市.html" class="card">伊宁市</a>
+        <a class="card" href="伊宁市.html">伊宁市</a>
 
-        <a href="奎屯市.html" class="card">奎屯市</a>
+        <a class="card" href="奎屯市.html">奎屯市</a>
 
-        <a href="霍尔果斯市.html" class="card">霍尔果斯市</a>
+        <a class="card" href="霍尔果斯市.html">霍尔果斯市</a>
 
-        <a href="伊宁县.html" class="card">伊宁县</a>
+        <a class="card" href="伊宁县.html">伊宁县</a>
 
-        <a href="察布查尔县.html" class="card">察布查尔县</a>
+        <a class="card" href="察布查尔锡伯自治县.html">察布查尔县</a>
 
-        <a href="霍城县.html" class="card">霍城县</a>
+        <a class="card" href="霍城县.html">霍城县</a>
 
-        <a href="巩留县.html" class="card">巩留县</a>
+        <a class="card" href="巩留县.html">巩留县</a>
 
-        <a href="新源县.html" class="card">新源县</a>
+        <a class="card" href="新源县.html">新源县</a>
 
-        <a href="昭苏县.html" class="card">昭苏县</a>
+        <a class="card" href="昭苏县.html">昭苏县</a>
 
-        <a href="特克斯县.html" class="card">特克斯县</a>
+        <a class="card" href="特克斯县.html">特克斯县</a>
 
-        <a href="尼勒克县.html" class="card">尼勒克县</a>
+        <a class="card" href="尼勒克县.html">尼勒克县</a>
 
     </div>
 
