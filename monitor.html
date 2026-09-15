@@ -87,9 +87,7 @@ h2 {
 
     border-radius:50%;
 
-    background:transparent;
-
-    box-shadow:0 5px 15px gray;
+    background:rgba(255,255,255,0.25);
 
     font-size:28px;
 
@@ -126,13 +124,23 @@ h2 {
 }
 
 
-/* 卡片窗口 */
+/* 滑动窗口 */
 
 .viewport {
 
     width:900px;
 
     overflow:hidden;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.18);
+
+    border:1px solid rgba(0,0,0,0.25);
+
+    backdrop-filter:blur(3px);
 
 }
 
@@ -162,9 +170,11 @@ h2 {
 
     border-radius:15px;
 
-    background:transparent;
+    background:rgba(255,255,255,0.12);
 
-    box-shadow:0 5px 15px gray;
+    backdrop-filter:blur(5px);
+
+    -webkit-backdrop-filter:blur(5px);
 
     display:flex;
 
@@ -208,9 +218,11 @@ h2 {
 
     border-radius:15px;
 
-    background:transparent;
+    background:rgba(255,255,255,0.12);
 
-    box-shadow:0 5px 15px gray;
+    backdrop-filter:blur(5px);
+
+    -webkit-backdrop-filter:blur(5px);
 
     display:flex;
 
@@ -270,182 +282,5 @@ id="leftButton"
 
 <div class="viewport">
 
-<div class="cards" id="cards">
-
-<div class="card">伊宁市</div>
-
-<div class="card">奎屯市</div>
-
-<div class="card">霍尔果斯市</div>
-
-<div class="card">伊宁县</div>
-
-<div class="card">霍城县</div>
-
-<div class="card">巩留县</div>
-
-<div class="card">新源县</div>
-
-<div class="card">昭苏县</div>
-
-<div class="card">特克斯县</div>
-
-<div class="card">尼勒克县</div>
-
-<div class="card">察布查尔锡伯自治县</div>
-
-</div>
-
-</div>
-
-
-<button
-class="arrow"
-id="rightButton"
->
-›
-</button>
-
-
-</div>
-
-
-<h2>
-南京市
-</h2>
-
-
-<div class="nanjing">
-南京市
-</div>
-
-
-<script>
-
-/* 当前滑动位置 */
-
-let position = 0;
-
-
-/* 每个卡片实际占用的宽度 */
-
-let cardWidth = 180;
-
-
-/* 最右边的位置 */
-
-let maxPosition = 6;
-
-
-/* 获取按钮 */
-
-let leftButton = document.getElementById("leftButton");
-
-let rightButton = document.getElementById("rightButton");
-
-
-/* 滑动 */
-
-function updateSlider(){
-
-    document.getElementById("cards").style.transform =
-        "translateX(-" + position * cardWidth + "px)";
-
-}
-
-
-/* 向左翻 */
-
-function moveLeft(){
-
-    if(position > 0){
-
-        position--;
-
-        updateSlider();
-
-    }
-
-}
-
-
-/* 向右翻 */
-
-function moveRight(){
-
-    if(position < maxPosition){
-
-        position++;
-
-        updateSlider();
-
-    }
-
-}
-
-
-/* 长按连续翻页 */
-
-let leftTimer;
-
-let rightTimer;
-
-
-/* 左边按钮 */
-
-leftButton.addEventListener("mousedown",function(){
-
-    moveLeft();
-
-    leftTimer = setInterval(function(){
-
-        moveLeft();
-
-    },500);
-
-});
-
-
-/* 右边按钮 */
-
-rightButton.addEventListener("mousedown",function(){
-
-    moveRight();
-
-    rightTimer = setInterval(function(){
-
-        moveRight();
-
-    },500);
-
-});
-
-
-/* 松开鼠标 */
-
-document.addEventListener("mouseup",function(){
-
-    clearInterval(leftTimer);
-
-    clearInterval(rightTimer);
-
-});
-
-
-/* 鼠标离开浏览器也停止 */
-
-document.addEventListener("mouseleave",function(){
-
-    clearInterval(leftTimer);
-
-    clearInterval(rightTimer);
-
-});
-
-</script>
-
-
-</body>
-
-</html>
+<div class="cards" id="c
 ```
