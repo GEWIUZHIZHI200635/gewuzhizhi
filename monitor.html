@@ -24,7 +24,7 @@ body{
     /* 背景图片 */
     background:
         linear-gradient(rgba(255,255,255,0.18),rgba(255,255,255,0.18)),
-        url("风景2.jpg") center center / cover no-repeat fixed;
+        url("images/风景2.jpg") center center / cover no-repeat fixed;
 }
 
 .container{
@@ -61,23 +61,23 @@ h1{
     justify-content:center;
     align-items:center;
 
-    /* 圆角 */
     border-radius:18px;
 
     text-decoration:none;
-    color:#1f2d3d;
+
+    /* 默认字体黑色 */
+    color:#000000;
 
     font-size:22px;
     font-weight:600;
 
-    /* 默认白色半透明 */
-    background:rgba(255,255,255,0.88);
+    /* 默认白色，完全填充 */
+    background:#ffffff;
 
-    border:1px solid rgba(255,255,255,0.9);
+    border:1px solid #ffffff;
 
     box-shadow:0 8px 20px rgba(0,0,0,0.12);
 
-    /* 动画 */
     transition:all 0.25s ease;
 }
 
@@ -85,10 +85,13 @@ h1{
 .card:hover{
     transform:translateY(-6px);
 
-    /* 淡蓝色 */
-    background:rgba(190,225,255,0.92);
+    /* 深蓝色，完全填充 */
+    background:#0057b8;
 
-    box-shadow:0 14px 28px rgba(0,0,0,0.18);
+    /* 字体变白 */
+    color:#ffffff;
+
+    box-shadow:0 14px 28px rgba(0,0,0,0.25);
 }
 
 </style>
