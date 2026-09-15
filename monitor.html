@@ -3,68 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>伊犁州实时气象监测</title>
+
+<title>伊犁实时气象监测</title>
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
+    min-height:100vh;
+    font-family:"Microsoft YaHei",Arial,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    /* 背景图片 */
+    background:
+        linear-gradient(rgba(255,255,255,0.18),rgba(255,255,255,0.18)),
+        url("风景2.jpg") center center / cover no-repeat fixed;
+}
+
+.container{
+    width:1000px;
     text-align:center;
 }
 
 h1{
-    margin-top:50px;
+    margin:0 0 45px;
+
+    font-size:36px;
+    letter-spacing:5px;
+    color:#1f2d3d;
+
+    text-shadow:0 2px 8px rgba(255,255,255,0.8);
 }
 
 .cards{
-    width:900px;
-    margin:40px auto;
-    
     display:grid;
-    grid-template-columns:repeat(4, 180px);
+
+    /* 一行4个 */
+    grid-template-columns:repeat(4,210px);
+
     gap:25px;
-    
+
     justify-content:center;
 }
 
 .card{
-    width:180px;
-    height:100px;
-    
+    width:210px;
+    height:120px;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    
-    border-radius:15px;
-    
+
+    /* 圆角 */
+    border-radius:18px;
+
     text-decoration:none;
-    color:black;
-    
-    border:1px solid #ccc;
+    color:#1f2d3d;
+
+    font-size:22px;
+    font-weight:600;
+
+    /* 默认白色半透明 */
+    background:rgba(255,255,255,0.88);
+
+    border:1px solid rgba(255,255,255,0.9);
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+    /* 动画 */
+    transition:all 0.25s ease;
+}
+
+/* 鼠标放上去 */
+.card:hover{
+    transform:translateY(-6px);
+
+    /* 淡蓝色 */
+    background:rgba(190,225,255,0.92);
+
+    box-shadow:0 14px 28px rgba(0,0,0,0.18);
 }
 
 </style>
-    
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>伊犁州实时气象监测</h1>
+    <h1>伊犁实时气象监测</h1>
 
     <div class="cards">
+
         <a class="card" href="伊宁市.html">伊宁市</a>
         <a class="card" href="伊宁县.html">伊宁县</a>
         <a class="card" href="霍城县.html">霍城县</a>
         <a class="card" href="霍尔果斯市.html">霍尔果斯市</a>
-        <a class="card" href="察布查尔县.html">察布查尔锡伯自治县</a>
+
+        <a class="card" href="察布查尔县.html">察布查尔县</a>
         <a class="card" href="巩留县.html">巩留县</a>
         <a class="card" href="尼勒克县.html">尼勒克县</a>
         <a class="card" href="特克斯县.html">特克斯县</a>
+
         <a class="card" href="新源县.html">新源县</a>
         <a class="card" href="昭苏县.html">昭苏县</a>
         <a class="card" href="奎屯市.html">奎屯市</a>
+
     </div>
 
 </div>
