@@ -10,20 +10,48 @@
 
 <style>
 
+
+.home-btn {
+    position: fixed;
+
+    bottom: 25px;
+    left: 25px;
+
+    padding: 10px 18px;
+
+    background-color: rgba(255,255,255,0.75);
+
+    color: #1f2d3d;
+
+    border: 1px solid rgba(255,255,255,0.8);
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+
+    transition: 0.3s;
+}
+
+
+.home-btn:hover {
+    background-color: #1f4e79;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+    
 /* 页面标题 */
 h1 {
     text-align: center;
     color: #1f2d3d;
     margin-top: 40px;
     margin-bottom: 50px;
-}
-
-
-h2 {
-    text-align: center;
-    color: #1f2d3d;
-    margin-top: 50px;
-    margin-bottom: 30px;
 }
     
 
@@ -104,6 +132,10 @@ body {
 
 <body>
 
+
+<a href="index.html" class="home-btn">← 返回首页</a>
+
+    
 <div class="container">
 
     <h1>伊犁实时气象监测</h1>
@@ -127,7 +159,7 @@ body {
     </div>
 
 
-<h2>全国其他城市实时气象监测</h2>
+<h1>全国其他城市实时气象监测</h1>
 
     <div class="cards">
 
