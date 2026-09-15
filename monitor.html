@@ -1,88 +1,115 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>伊犁州气象监测</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊犁州实时气象监测</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, "Microsoft YaHei", sans-serif;
-            background-image: url("你的背景图片路径.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+<style>
+*{
+    box-sizing:border-box;
+}
 
-        h1 {
-            text-align: center;
-            color: white;
-            margin-top: 50px;
-            margin-bottom: 40px;
-        }
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:"Microsoft YaHei",Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35)),
+        url("background.jpg") center center / cover no-repeat fixed;
+}
 
-        .cards {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+.container{
+    width:min(1100px,92%);
+    text-align:center;
+}
 
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
+h1{
+    margin:0 0 45px;
+    font-size:36px;
+    letter-spacing:5px;
+    color:#1f2d3d;
+    text-shadow:0 2px 8px rgba(255,255,255,.8);
+}
 
-        .card {
-            height: 120px;
-            background: white;
-            border-radius: 12px;
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+.card{
+    height:120px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:#1f2d3d;
+    font-size:22px;
+    font-weight:600;
+    background:rgba(255,255,255,.88);
+    border:1px solid rgba(255,255,255,.95);
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+    backdrop-filter:blur(5px);
+    transition:.25s;
+}
 
-            text-decoration: none;
-            color: #333;
-            font-size: 22px;
-            font-weight: bold;
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 30px rgba(0,0,0,.18);
+    background:rgba(255,255,255,.96);
+}
 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+@media(max-width:850px){
+    .cards{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
 
-        .card:hover {
-            transform: translateY(-3px);
-        }
-    </style>
+@media(max-width:600px){
+    h1{
+        font-size:28px;
+        margin-bottom:30px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+    }
+
+    .card{
+        height:100px;
+        font-size:18px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <h1>伊犁州气象监测</h1>
+<div class="container">
+
+    <h1>伊犁州实时气象监测</h1>
 
     <div class="cards">
-
         <a class="card" href="伊宁市.html">伊宁市</a>
-
-        <a class="card" href="奎屯市.html">奎屯市</a>
-
-        <a class="card" href="霍尔果斯市.html">霍尔果斯市</a>
-
         <a class="card" href="伊宁县.html">伊宁县</a>
-
-        <a class="card" href="察布查尔锡伯自治县.html">察布查尔县</a>
-
         <a class="card" href="霍城县.html">霍城县</a>
-
+        <a class="card" href="霍尔果斯市.html">霍尔果斯市</a>
+        <a class="card" href="察布查尔锡伯自治县.html">察布查尔锡伯自治县</a>
         <a class="card" href="巩留县.html">巩留县</a>
-
-        <a class="card" href="新源县.html">新源县</a>
-
-        <a class="card" href="昭苏县.html">昭苏县</a>
-
-        <a class="card" href="特克斯县.html">特克斯县</a>
-
         <a class="card" href="尼勒克县.html">尼勒克县</a>
-
+        <a class="card" href="特克斯县.html">特克斯县</a>
+        <a class="card" href="新源县.html">新源县</a>
+        <a class="card" href="昭苏县.html">昭苏县</a>
+        <a class="card" href="奎屯市.html">奎屯市</a>
     </div>
+
+</div>
 
 </body>
 </html>
