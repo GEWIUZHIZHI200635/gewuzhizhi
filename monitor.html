@@ -16,7 +16,13 @@ body {
 
     font-family:"Microsoft YaHei";
 
-    background:#f5f8fc;
+    background-image:url("images/风景.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
 
     color:#222;
 
@@ -80,7 +86,7 @@ h2 {
 
     border-radius:50%;
 
-    background:white;
+    background:rgba(255,255,255,0.9);
 
     box-shadow:0 4px 12px rgba(0,0,0,.12);
 
@@ -90,6 +96,8 @@ h2 {
 
     transition:.3s;
 
+    user-select:none;
+
 }
 
 
@@ -98,6 +106,15 @@ h2 {
     background:#1f4e79;
 
     color:white;
+
+}
+
+
+/* 正在按住按钮时 */
+
+.arrow:active {
+
+    transform:scale(.92);
 
 }
 
@@ -138,7 +155,7 @@ h2 {
 
     border-radius:16px;
 
-    background:white;
+    background:rgba(255,255,255,0.92);
 
     box-shadow:0 5px 15px rgba(0,0,0,.08);
 
@@ -156,6 +173,8 @@ h2 {
 
 }
 
+
+/* 地区卡片鼠标悬停 */
 
 .card:hover {
 
@@ -182,7 +201,7 @@ h2 {
 
     border-radius:16px;
 
-    background:white;
+    background:rgba(255,255,255,0.92);
 
     box-shadow:0 5px 15px rgba(0,0,0,.08);
 
@@ -232,7 +251,10 @@ h2 {
 <div class="slider">
 
 
-<button class="arrow" onclick="moveLeft()">
+<button
+class="arrow"
+id="leftButton"
+>
 ‹
 </button>
 
@@ -268,7 +290,10 @@ h2 {
 </div>
 
 
-<button class="arrow" onclick="moveRight()">
+<button
+class="arrow"
+id="rightButton"
+>
 ›
 </button>
 
@@ -288,20 +313,39 @@ h2 {
 
 <script>
 
+/* 当前滑动位置 */
+
 let position = 0;
 
 
-/* 每次移动一个卡片 */
+/* 每个卡片实际占用的宽度 */
 
 let cardWidth = 180;
 
 
-/* 最大移动位置 */
+/* 最右边的位置 */
 
 let maxPosition = 6;
 
 
-/* 向左 */
+/* 获取按钮 */
+
+let leftButton = document.getElementById("leftButton");
+
+let rightButton = document.getElementById("rightButton");
+
+
+/* 滑动 */
+
+function updateSlider(){
+
+    document.getElementById("cards").style.transform =
+        "translateX(-" + position * cardWidth + "px)";
+
+}
+
+
+/* 向左翻 */
 
 function moveLeft(){
 
@@ -316,7 +360,7 @@ function moveLeft(){
 }
 
 
-/* 向右 */
+/* 向右翻 */
 
 function moveRight(){
 
@@ -331,14 +375,64 @@ function moveRight(){
 }
 
 
-/* 更新位置 */
+/* 长按连续翻页 */
 
-function updateSlider(){
+let leftTimer;
 
-    document.getElementById("cards").style.transform =
-        "translateX(-" + position * cardWidth + "px)";
+let rightTimer;
 
-}
+
+/* 左边按钮 */
+
+leftButton.addEventListener("mousedown",function(){
+
+    moveLeft();
+
+    leftTimer = setInterval(function(){
+
+        moveLeft();
+
+    },500);
+
+});
+
+
+/* 右边按钮 */
+
+rightButton.addEventListener("mousedown",function(){
+
+    moveRight();
+
+    rightTimer = setInterval(function(){
+
+        moveRight();
+
+    },500);
+
+});
+
+
+/* 松开鼠标 */
+
+document.addEventListener("mouseup",function(){
+
+    clearInterval(leftTimer);
+
+    clearInterval(rightTimer);
+
+});
+
+
+/* 鼠标离开浏览器也停止 */
+
+document.addEventListener("mouseleave",function(){
+
+    clearInterval(leftTimer);
+
+    clearInterval(rightTimer);
+
+});
+
 
 </script>
 
