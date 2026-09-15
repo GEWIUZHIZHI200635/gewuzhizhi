@@ -8,92 +8,69 @@
 
 <style>
 
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    min-height:100vh;
-    font-family:"Microsoft YaHei",Arial,sans-serif;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    /* 背景图片 */
-    background:
-        linear-gradient(rgba(255,255,255,0.18),rgba(255,255,255,0.18)),
-        url("images/风景2.jpg") center center / cover no-repeat fixed;
-}
-
-.container{
-    width:1000px;
+h1 {
     text-align:center;
-}
-
-h1{
-    margin:0 0 45px;
-
-    font-size:36px;
-    letter-spacing:5px;
     color:#1f2d3d;
-
-    text-shadow:0 2px 8px rgba(255,255,255,0.8);
 }
 
-.cards{
-    display:grid;
 
-    /* 一行4个 */
-    grid-template-columns:repeat(4,210px);
-
-    gap:25px;
-
+nav {
+    display:flex;
     justify-content:center;
+    gap:40px;
 }
 
-.card{
-    width:210px;
-    height:120px;
+
+body {
+    width:1200px;
+    margin:auto;
+
+    background-image:url("images/风景2.jpg");
+    background-size:cover;
+    background-position:center 40%;
+    background-attachment:fixed;
+}
+
+
+.card {
+    width:200px;
+    height:100px;
+
+    border:1px solid rgba(255,255,255,0.7);
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.25);
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    border-radius:18px;
+    transition:0.3s;
 
+    font-size:24px;
+
+    /* 默认黑色字体 */
+    color:black;
+
+    /* 半透明白色 */
+    background-color:rgba(255,255,255,0.65);
+
+    /* 去掉链接默认下划线 */
     text-decoration:none;
-
-    /* 默认字体黑色 */
-    color:#000000;
-
-    font-size:22px;
-    font-weight:600;
-
-    /* 默认白色，完全填充 */
-    background:#ffffff;
-
-    border:1px solid #ffffff;
-
-    box-shadow:0 8px 20px rgba(0,0,0,0.12);
-
-    transition:all 0.25s ease;
 }
 
-/* 鼠标放上去 */
-.card:hover{
-    transform:translateY(-6px);
 
-    /* 深蓝色，完全填充 */
-    background:#0057b8;
+.card:hover {
+
+    /* 你原来代码里的深蓝色 */
+    background-color:#1f4e79;
 
     /* 字体变白 */
-    color:#ffffff;
+    color:white;
 
-    box-shadow:0 14px 28px rgba(0,0,0,0.25);
+    /* 向上浮动 */
+    transform:translateY(-10px);
 }
-
 </style>
 
 </head>
