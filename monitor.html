@@ -1,286 +1,149 @@
-```html
 <!DOCTYPE html>
-
-<html>
-
+<html lang="zh-CN">
 <head>
-
-<title>
-气象监测
-</title>
-
-<style>
-
-body {
-
-    margin:0;
-
-    font-family:"Microsoft YaHei";
-
-    background-image:url("images/风景.jpg");
-
-    background-size:cover;
-
-    background-position:center;
-
-    background-attachment:fixed;
-
-    color:#222;
-
-    text-align:center;
-
-}
-
-
-/* 主标题 */
-
-h1 {
-
-    margin-top:45px;
-
-    font-size:34px;
-
-    letter-spacing:3px;
-
-}
-
-
-/* 分区标题 */
-
-h2 {
-
-    margin-top:45px;
-
-    font-size:26px;
-
-}
-
-
-/* 伊犁州滑动区域 */
-
-.slider {
-
-    width:1100px;
-
-    margin:30px auto;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:20px;
-
-}
-
-
-/* 左右箭头 */
-
-.arrow {
-
-    width:50px;
-
-    height:50px;
-
-    border:1px solid black;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,0.25);
-
-    font-size:28px;
-
-    color:black;
-
-    cursor:pointer;
-
-    transition:0.3s;
-
-    user-select:none;
-
-}
-
-
-/* 箭头悬停 */
-
-.arrow:hover {
-
-    background-color:#1f4e79;
-
-    color:white;
-
-    transform:translateY(-5px);
-
-}
-
-
-/* 按住箭头 */
-
-.arrow:active {
-
-    transform:scale(.92);
-
-}
-
-
-/* 滑动窗口 */
-
-.viewport {
-
-    width:900px;
-
-    overflow:hidden;
-
-    padding:15px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,0.18);
-
-    border:1px solid rgba(0,0,0,0.25);
-
-    backdrop-filter:blur(3px);
-
-}
-
-
-/* 卡片容器 */
-
-.cards {
-
-    display:flex;
-
-    gap:15px;
-
-    transition:transform .4s ease;
-
-}
-
-
-/* 地区卡片 */
-
-.card {
-
-    flex:0 0 165px;
-
-    height:100px;
-
-    border:1px solid black;
-
-    border-radius:15px;
-
-    background:rgba(255,255,255,0.12);
-
-    backdrop-filter:blur(5px);
-
-    -webkit-backdrop-filter:blur(5px);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:0.3s;
-
-    font-size:21px;
-
-    color:black;
-
-}
-
-
-/* 地区卡片悬停 */
-
-.card:hover {
-
-    background-color:#1f4e79;
-
-    color:white;
-
-    transform:translateY(-10px);
-
-}
-
-
-/* 南京 */
-
-.nanjing {
-
-    width:200px;
-
-    height:100px;
-
-    margin:30px auto;
-
-    border:1px solid black;
-
-    border-radius:15px;
-
-    background:rgba(255,255,255,0.12);
-
-    backdrop-filter:blur(5px);
-
-    -webkit-backdrop-filter:blur(5px);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:0.3s;
-
-    font-size:21px;
-
-    color:black;
-
-}
-
-
-/* 南京悬停 */
-
-.nanjing:hover {
-
-    background-color:#1f4e79;
-
-    color:white;
-
-    transform:translateY(-10px);
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伊犁州实时气象监测</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Microsoft YaHei", sans-serif;
+
+            /* 背景图片 */
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            /* 让背景稍微暗一点，方便看文字 */
+            position: relative;
+        }
+
+        /* 背景遮罩 */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: -1;
+        }
+
+        /* 标题 */
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            padding: 60px 0 45px;
+            letter-spacing: 4px;
+        }
+
+        /* 卡片容器 */
+        .cards {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        /* 卡片 */
+        .card {
+            height: 150px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 12px;
+
+            color: #222;
+            text-decoration: none;
+            font-size: 22px;
+
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.98);
+            transform: translateY(-5px);
+        }
+
+        /* 最后一张居中 */
+        .card:last-child {
+            grid-column: 2;
+        }
+
+        /* 平板 */
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .card:last-child {
+                grid-column: auto;
+            }
+        }
+
+        /* 手机 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+                padding: 40px 0 30px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .card {
+                height: 120px;
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
+    <h1>伊犁州实时气象监测</h1>
 
-<h1>
-气象监测
-</h1>
+    <div class="cards">
 
+        <a href="伊宁市.html" class="card">伊宁市</a>
 
-<h2>
-伊犁州
-</h2>
+        <a href="奎屯市.html" class="card">奎屯市</a>
 
+        <a href="霍尔果斯市.html" class="card">霍尔果斯市</a>
 
-<div class="slider">
+        <a href="伊宁县.html" class="card">伊宁县</a>
 
+        <a href="察布查尔县.html" class="card">察布查尔县</a>
 
-<button
-class="arrow"
-id="leftButton"
->
-‹
-</button>
+        <a href="霍城县.html" class="card">霍城县</a>
 
+        <a href="巩留县.html" class="card">巩留县</a>
 
-<div class="viewport">
+        <a href="新源县.html" class="card">新源县</a>
 
-<div class="cards" id="c
-```
+        <a href="昭苏县.html" class="card">昭苏县</a>
+
+        <a href="特克斯县.html" class="card">特克斯县</a>
+
+        <a href="尼勒克县.html" class="card">尼勒克县</a>
+
+    </div>
+
+</body>
+</html>
