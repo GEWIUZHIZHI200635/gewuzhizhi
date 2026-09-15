@@ -6,87 +6,45 @@
 <title>伊犁州实时气象监测</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
 
 body{
     margin:0;
-    min-height:100vh;
-    font-family:"Microsoft YaHei",Arial,sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:
-        linear-gradient(rgba(255,255,255,0.15),rgba(255,255,255,0.15)),
-        url("images/风景2.jpg") center center / cover no-repeat fixed;
-}
-
-.container{
-    width:min(1100px,92%);
     text-align:center;
 }
 
 h1{
-    margin:0 0 45px;
-    font-size:36px;
-    letter-spacing:5px;
-    color:#1f2d3d;
-    text-shadow:0 2px 8px rgba(255,255,255,.8);
+    margin-top:50px;
 }
 
 .cards{
+    width:900px;
+    margin:40px auto;
+    
     display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:24px;
+    grid-template-columns:repeat(4, 180px);
+    gap:25px;
+    
+    justify-content:center;
 }
 
 .card{
-    height:120px;
+    width:180px;
+    height:100px;
+    
     display:flex;
     justify-content:center;
     align-items:center;
+    
+    border-radius:15px;
+    
     text-decoration:none;
-    color:#1f2d3d;
-    font-size:22px;
-    font-weight:600;
-    background:rgba(255,255,255,.88);
-    border:1px solid rgba(255,255,255,.95);
-    border-radius:16px;
-    box-shadow:0 8px 25px rgba(0,0,0,.12);
-    backdrop-filter:blur(5px);
-    transition:.25s;
+    color:black;
+    
+    border:1px solid #ccc;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 14px 30px rgba(0,0,0,.18);
-    background:rgba(255,255,255,.96);
-}
-
-@media(max-width:850px){
-    .cards{
-        grid-template-columns:repeat(3,1fr);
-    }
-}
-
-@media(max-width:600px){
-    h1{
-        font-size:28px;
-        margin-bottom:30px;
-    }
-
-    .cards{
-        grid-template-columns:repeat(2,1fr);
-        gap:15px;
-    }
-
-    .card{
-        height:100px;
-        font-size:18px;
-    }
-}
 </style>
+    
 </head>
 
 <body>
