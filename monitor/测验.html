@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+伊宁县实时气象监测
+</title>
+
+
+<style>
+
+
+body {
+
+    text-align:center;
+
+    margin:0;
+
+    font-family:"Microsoft YaHei";
+
+    background:#f5f8fc;
+
+    color:#222;
+
+}
+
+
+
+/* 标题 */
+
+h1{
+
+    margin-top:35px;
+
+    font-size:34px;
+
+    letter-spacing:3px;
+
+}
+
+
+h2{
+
+    margin-top:25px;
+
+    font-size:24px;
+
+}
+
+
+
+
+/* 信息区域 */
+
+#weather > p{
+
+    color:#666;
+
+    font-size:15px;
+
+    margin:8px;
+
+}
+
+
+
+
+/* 实时天气卡片 */
+
+.cards {
+
+
+    width:850px;
+
+    margin:35px auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(4,180px);
+
+
+    gap:25px;
+
+
+    justify-content:center;
+
+
+}
+
+
+
+.card {
+
+
+    padding:25px 15px;
+
+
+    border-radius:18px;
+
+
+    text-align:center;
+
+
+    background:white;
+
+
+    width:150px;
+
+
+    min-height:100px;
+
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+
+    border:1px solid #e5e5e5;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.card div{
+
+
+    font-size:17px;
+
+
+    color:#666;
+
+
+}
+
+
+
+.card strong {
+
+
+    display:block;
+
+
+    font-size:30px;
+
+
+    margin-top:15px;
+
+
+    color:#111;
+
+
+}
+
+
+
+
+
+
+
+/* 实时监测区域 */
+
+
+.monitor{
+
+
+    width:1000px;
+
+
+    margin:40px auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(2,450px);
+
+
+    gap:30px;
+
+
+}
+
+
+
+
+.monitor-box{
+
+
+    background:white;
+
+
+    border-radius:18px;
+
+
+    padding:15px;
+
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+
+}
+
+
+
+.monitor-box img{
+
+
+    width:100%;
+
+
+    height:300px;
+
+
+    object-fit:cover;
+
+
+    border-radius:12px;
+
+
+}
+
+
+
+
+/* 未来天气 */
+
+
+.forecast {
+
+
+    width:1000px;
+
+
+    margin:30px auto;
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(7,130px);
+
+
+    justify-content:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+.forecast-card {
+
+
+    padding:20px 10px;
+
+
+    border-radius:16px;
+
+
+    background:white;
+
+
+    border:1px solid #e5e5e5;
+
+
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+
+
+    font-size:15px;
+
+
+}
+
+
+
+.forecast-card strong {
+
+
+    display:block;
+
+
+    font-size:22px;
+
+
+    margin:18px 0;
+
+
+}
+
+
+
+
+
+
+/* 返回按钮 */
+
+
+.back-btn {
+
+    position: fixed;
+
+
+    left:25px;
+
+
+    bottom:25px;
+
+
+    padding:10px 18px;
+
+
+    background:rgba(255,255,255,0.8);
+
+
+    color:#1f2d3d;
+
+
+    border:1px solid #e5e5e5;
+
+
+    border-radius:10px;
+
+
+    text-decoration:none;
+
+
+    font-size:16px;
+
+
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+.back-btn:hover {
+
+
+    background:#1f4e79;
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+
+
+/* 手机适配 */
+
+
+@media(max-width:900px){
+
+
+.cards{
+
+    width:95%;
+
+    grid-template-columns:repeat(2,180px);
+
+}
+
+
+.monitor{
+
+    width:95%;
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.forecast{
+
+    width:95%;
+
+    grid-template-columns:repeat(3,130px);
+
+}
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<a class="back-btn" href="../monitor.html">
+返回上一页
+</a>
+
+
+
+
+<h1>
+伊宁县实时气象要素监测
+</h1>
+
+
+
+<p id="weather">
+正在获取天气数据……
+</p>
+
+
+
+
+
+
+<script>
+
+// ===============================
+// 卫星云图和雷达图
+// ===============================
+
+
+let satelliteURL =
+"https://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG";
+
+
+let radarURL =
+"https://www.nmc.cn/publish/radar/huanan.gif";
+
+
+
+// 插入实时监测区域
+
+let monitorHTML =
+
+"<h2>实时监测</h2>" +
+
+"<div class='monitor'>" +
+
+
+"<div class='monitor-box'>" +
+
+"<h3>卫星云图</h3>" +
+
+"<img id='satellite'>" +
+
+"</div>" +
+
+
+
+"<div class='monitor-box'>" +
+
+"<h3>雷达图</h3>" +
+
+"<img id='radar'>" +
+
+"</div>" +
+
+
+"</div>";
+
+
+
+document.getElementById("weather").innerHTML += monitorHTML;
+
+
+
+// 图片刷新函数
+
+function updateImages(){
+
+
+document.getElementById("satellite").src =
+satelliteURL + "?time=" + Date.now();
+
+
+
+document.getElementById("radar").src =
+radarURL + "?time=" + Date.now();
+
+
+
+}
+
+
+
+// 第一次加载
+
+updateImages();
+
+
+
+// 卫星30分钟刷新
+
+setInterval(updateImages,30*60*1000);
+
+
+
+
+
+
+
+
+
+// ===============================
+// 天气数据
+// ===============================
+
+
+fetch(
+
+"https://api.open-meteo.com/v1/forecast?latitude=43.98&longitude=81.53&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,precipitation,weather_code,visibility&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=8&timezone=Asia%2FShanghai"
+
+)
+
+
+.then(response=>response.json())
+
+
+.then(data=>{
+
+
+
+let time=data.current.time;
+
+
+let date=new Date(time);
+
+
+
+let timeText=
+
+date.getFullYear()+"年"+
+
+(date.getMonth()+1)+"月"+
+
+date.getDate()+"日 "+
+
+String(date.getHours()).padStart(2,"0")+":"+
+
+String(date.getMinutes()).padStart(2,"0");
+
+
+
+
+
+// 天气代码
+
+
+let code=data.current.weather_code;
+
+
+let weatherText="其他天气";
+
+
+
+if(code==0||code==1)
+
+weatherText="晴";
+
+
+else if(code==2||code==3)
+
+weatherText="多云";
+
+
+else if(code==45||code==48)
+
+weatherText="雾";
+
+
+else if(code>=51&&code<=57)
+
+weatherText="毛毛雨";
+
+
+else if(code==61)
+
+weatherText="小雨";
+
+
+else if(code==63)
+
+weatherText="中雨";
+
+
+else if(code==65)
+
+weatherText="大雨";
+
+
+else if(code==71)
+
+weatherText="小雪";
+
+
+else if(code==73)
+
+weatherText="中雪";
+
+
+else if(code==75)
+
+weatherText="大雪";
+
+
+else if(code>=80&&code<=82)
+
+weatherText="阵雨";
+
+
+else if(code==95)
+
+weatherText="雷暴";
+
+
+else if(code==96||code==99)
+
+weatherText="雷暴伴冰雹";
+
+
+
+
+
+// 风向
+
+
+let deg=data.current.wind_direction_10m;
+
+
+let windText;
+
+
+
+if(deg>=337.5||deg<22.5)
+
+windText="北风";
+
+else if(deg<67.5)
+
+windText="东北风";
+
+else if(deg<112.5)
+
+windText="东风";
+
+else if(deg<157.5)
+
+windText="东南风";
+
+else if(deg<202.5)
+
+windText="南风";
+
+else if(deg<247.5)
+
+windText="西南风";
+
+else if(deg<292.5)
+
+windText="西风";
+
+else
+
+windText="西北风";
+
+
+
+
+
+
+let visibility;
+
+
+
+if(data.current.visibility>=10000)
+
+visibility="≥10000 m";
+
+else
+
+visibility=data.current.visibility+" m";
+
+
+
+
+
+// 七天天气
+
+
+let forecast="";
+
+
+
+for(let i=1;i<8;i++){
+
+
+let c=data.daily.weather_code[i];
+
+
+let t="其他天气";
+
+
+if(c==0||c==1)
+
+t="晴";
+
+
+else if(c==2||c==3)
+
+t="多云";
+
+
+else if(c>=51&&c<=57)
+
+t="毛毛雨";
+
+
+else if(c==61)
+
+t="小雨";
+
+
+else if(c==63)
+
+t="中雨";
+
+
+else if(c==65)
+
+t="大雨";
+
+
+else if(c>=80&&c<=82)
+
+t="阵雨";
+
+
+
+forecast+=
+
+"<div class='forecast-card'>"+
+
+"<div>"+data.daily.time[i]+"</div>"+
+
+"<strong>"+t+"</strong>"+
+
+"<div>"+
+
+data.daily.temperature_2m_max[i]+"℃ / "+
+
+data.daily.temperature_2m_min[i]+"℃"+
+
+"</div>"+
+
+"</div>";
+
+}
+
+
+
+
+
+// 输出页面
+
+
+document.getElementById("weather").innerHTML =
+
+
+"<p>更新时间："+timeText+"</p>"+
+
+"<p>数据来源：Open-Meteo</p>"+
+
+
+"<div class='cards'>"+
+
+
+"<div class='card'><div>天气状况</div><strong>"+weatherText+"</strong></div>"+
+
+
+"<div class='card'><div>气温</div><strong>"+data.current.temperature_2m+"℃</strong></div>"+
+
+
+"<div class='card'><div>湿度</div><strong>"+data.current.relative_humidity_2m+"%</strong></div>"+
+
+
+"<div class='card'><div>风速</div><strong>"+(data.current.wind_speed_10m/3.6).toFixed(1)+"m/s</strong></div>"+
+
+
+"<div class='card'><div>风向</div><strong>"+windText+"</strong></div>"+
+
+
+"<div class='card'><div>气压</div><strong>"+data.current.pressure_msl+"hPa</strong></div>"+
+
+
+"<div class='card'><div>降水</div><strong>"+data.current.precipitation+"mm</strong></div>"+
+
+
+"<div class='card'><div>能见度</div><strong>"+visibility+"</strong></div>"+
+
+
+"</div>"+
+
+
+monitorHTML+
+
+
+
+"<h2>未来7天天气</h2>"+
+
+"<div class='forecast'>"+
+
+forecast+
+
+"</div>";
+
+
+
+
+
+// 重新加载图片
+
+updateImages();
+
+
+
+})
+
+
+.catch(error=>{
+
+
+document.getElementById("weather").innerHTML=
+
+"天气数据获取失败";
+
+
+console.log(error);
+
+
+});
+
+
+
+</script>
+
+
+</body>
+
+</html>
