@@ -176,20 +176,21 @@ h2{
 
     display:grid;
 
-    grid-template-columns:repeat(6,150px);
+    grid-template-columns:repeat(12,70px);
 
     justify-content:center;
 
-    gap:15px;
+    gap:12px;
 
 }
 
 
+
 .hourly-card {
 
-    padding:18px 10px;
+    padding:12px 5px;
 
-    border-radius:16px;
+    border-radius:12px;
 
     background:white;
 
@@ -198,6 +199,34 @@ h2{
     box-shadow:0 4px 12px rgba(0,0,0,0.06);
 
 }
+
+
+.hourly-card .time {
+
+    font-size:14px;
+
+    color:#666;
+
+}
+
+
+.hourly-card .weather {
+
+    font-size:15px;
+
+    margin:8px 0;
+
+}
+
+
+.hourly-card .temp {
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
 
 
 .hourly-card .time {
@@ -548,11 +577,19 @@ let hourlyForecast = "";
 let currentTime = data.current.time;
 
 
-/* 找到当前小时 */
+/* 当前小时 */
+
+let currentHour = Number(currentTime.substring(11,13));
+
+
+/* 找未来整点 */
 
 let startIndex = data.hourly.time.findIndex(function(time){
 
-    return time >= currentTime;
+    let hour = Number(time.substring(11,13));
+
+    return hour > currentHour || 
+          (hour == currentHour && time.substring(14,16) == "00");
 
 });
 
@@ -563,7 +600,7 @@ for(let i = startIndex; i < startIndex + 24; i++){
 
     let time = data.hourly.time[i];
 
-    let hour = time.substring(11,16);
+    let hour = Number(time.substring(11,13)) + "时";
 
     let code = data.hourly.weather_code[i];
 
