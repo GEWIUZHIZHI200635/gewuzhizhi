@@ -188,14 +188,10 @@ h2{
 
 .hourly-card {
 
-    padding:12px 5px;
-
-    border-radius:12px;
-
+    padding:18px 10px;
+    border-radius:16px;
     background:white;
-
     border:1px solid #e5e5e5;
-
     box-shadow:0 4px 12px rgba(0,0,0,0.06);
 
 }
@@ -221,9 +217,11 @@ h2{
 
 .hourly-card .temp {
 
-    font-size:20px;
+    font-size:18px;
 
-    font-weight:bold;
+    font-weight:normal;
+
+    color:#333;
 
 }
 
@@ -673,7 +671,7 @@ for(let i = startIndex; i < startIndex + 24; i++){
     "</div>" +
 
     "<div class='temp'>" +
-    data.hourly.temperature_2m[i] +
+    data.hourly.temperature_2m[i].toFixed(1) +
     " ℃" +
     "</div>" +
 
