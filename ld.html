@@ -229,26 +229,32 @@ h1{
 
 <div class="box">
 
-
 <h2>
-
 全国天气雷达拼图
-
 </h2>
 
 
+<iframe 
+src="https://www.weather.com.cn/radar/"
+style="
+width:100%;
+height:800px;
+border:none;
+border-radius:15px;
+">
+</iframe>
 
-<img id="radar">
 
+<div class="info">
 
-
-<div class="info" id="update-time">
-
-数据来源：中国气象局
+数据来源：中国天气网
 
 <br>
 
-雷达图自动更新
+雷达产品实时更新
+
+</div>
+
 
 </div>
 
@@ -353,16 +359,6 @@ function updateRadar(){
 
 
 }
-
-
-
-
-
-updateRadar();
-
-
-
-setInterval(updateRadar,600000);
 
 
 
