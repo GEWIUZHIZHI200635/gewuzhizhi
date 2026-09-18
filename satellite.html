@@ -40,7 +40,7 @@ h1{
 
 .box{
 
-    width:1000px;
+    width:1400px;
 
     margin:40px auto;
 
@@ -53,7 +53,6 @@ h1{
     box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 }
-
 
 
 .box img{
@@ -132,23 +131,74 @@ h1{
 </h2>
 
 
-<img id="satellite"
-src="https://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG">
+<img id="satellite">
 
 
 
-<div class="info">
+<div class="info" id="update-time">
 
 数据来源：中国气象卫星中心
 
 <br>
 
-图片自动更新
+图片自动更新（30分钟）
 
 </div>
 
 
 </div>
+
+
+
+<script>
+
+
+function updateSatellite(){
+
+
+    let img = document.getElementById("satellite");
+
+
+    img.src =
+
+    "https://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG?t="
+
+    + Date.now();
+
+
+
+    document.getElementById("update-time").innerHTML =
+
+    "数据来源：中国气象卫星中心"
+
+    + "<br>"
+
+    + "网页更新时间："
+
+    + new Date().toLocaleString()
+
+    + "<br>"
+
+    + "图片自动更新（30分钟）";
+
+
+}
+
+
+
+// 页面打开立即加载
+
+updateSatellite();
+
+
+
+// 每30分钟更新一次
+
+setInterval(updateSatellite,1800000);
+
+
+
+</script>
 
 
 
