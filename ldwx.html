@@ -9,6 +9,11 @@
 </title>
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
+
+
 <style>
 
 body{
@@ -131,7 +136,7 @@ h1{
 </h2>
 
 
-<img id="satellite" onclick="window.open(this.src)">
+<img id="satellite">
 
 
 
@@ -141,7 +146,7 @@ h1{
 
 <br>
 
-图片自动更新（30分钟）
+图片自动更新（15分钟）
 
 </div>
 
@@ -152,6 +157,11 @@ h1{
 
 <script>
 
+
+let viewer;
+
+
+// 更新卫星图片
 
 function updateSatellite(){
 
@@ -164,6 +174,35 @@ function updateSatellite(){
     "https://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/FY4B_REGC_GCLR.JPG?t="
 
     + Date.now();
+
+
+
+    img.onload = function(){
+
+
+        // 图片加载完成后开启放大功能
+
+        if(viewer){
+
+            viewer.destroy();
+
+        }
+
+
+        viewer = new Viewer(img, {
+
+            navbar:false,
+
+            title:false,
+
+            movable:true,
+
+            zoomable:true
+
+        });
+
+
+    };
 
 
 
@@ -192,7 +231,7 @@ updateSatellite();
 
 
 
-// 每30分钟更新一次
+// 每15分钟更新一次
 
 setInterval(updateSatellite,900000);
 
@@ -203,6 +242,5 @@ setInterval(updateSatellite,900000);
 
 
 </body>
-
 
 </html>
